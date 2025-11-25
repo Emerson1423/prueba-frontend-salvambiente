@@ -75,7 +75,7 @@ export default {
   methods: {
     async fetchNoticias() {
       // En desarrollo
-      const URL = 'http://localhost:3000/api/noticias'
+      const URL = 'https://prueba-backend-salvambiente.onrender.com'
       
       // En producción, usa tu URL de backend en Render
       // const URL = 'https://tu-backend.onrender.com/api/noticias'
