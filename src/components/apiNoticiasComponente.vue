@@ -74,16 +74,18 @@ export default {
   },
   methods: {
     async fetchNoticias() {
-      const API_KEY = '321bcd82eb1c22d5413cd2fc506fe018' // 👈 Coloca tu nueva API key aquí
-      const URL = `https://gnews.io/api/v4/search?q=medio ambiente OR clima OR sostenibilidad&lang=es&max=10&apikey=${API_KEY}`
+      // En desarrollo
+      const URL = 'http://localhost:3000/api/noticias'
+      
+      // En producción, usa tu URL de backend en Render
+      // const URL = 'https://tu-backend.onrender.com/api/noticias'
       
       try {
         const response = await axios.get(URL)
-        // GNews usa "articles" igual que NewsAPI
         this.noticias = response.data.articles.filter(n => n.image)
       } catch (error) {
         console.error('Error al cargar noticias:', error)
-        this.noticias = [] // Asegurar que no quede undefined
+        this.noticias = []
       } finally {
         this.loading = false
       }
@@ -104,7 +106,6 @@ export default {
   }
 }
 </script>
-
 <style>
 .container {
   max-width: 1100px;
