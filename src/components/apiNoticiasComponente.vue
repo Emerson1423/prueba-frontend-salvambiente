@@ -21,15 +21,15 @@
     <!-- Contenedor que da el fondo verde detrás de las cards -->
     <div class="noticias-wrapper">
       <div class="grid">
-        <div v-for="noticia in noticiasPaginadas" :key="noticia.url" class="card">
-          <img :src="noticia.urlToImage" alt="Noticia" class="card-img">
-          <div class="card-content">
-            <h2>{{ noticia.title }}</h2>
-            <p>{{ noticia.description }}</p>
-            <small>{{ new Date(noticia.publishedAt).toLocaleDateString() }}</small>
-            <a :href="noticia.url" target="_blank" class="btn-link">Leer más</a>
-          </div>
+      <div v-for="noticia in noticiasPaginadas" :key="noticia.url" class="card">
+        <img :src="noticia.image" alt="Noticia" class="card-img">
+        <div class="card-content">
+          <h2>{{ noticia.title }}</h2>
+          <p>{{ noticia.description }}</p>
+          <small>{{ new Date(noticia.publishedAt).toLocaleDateString() }}</small>
+          <a :href="noticia.url" target="_blank" class="btn-link">Leer más</a>
         </div>
+      </div>
       </div>
     </div>
 
@@ -74,13 +74,16 @@ export default {
   },
   methods: {
     async fetchNoticias() {
-      const API_KEY = '36b47060e71543baaba72cd81ce15fd9'
-      const URL = `https://newsapi.org/v2/everything?q=environment OR climate OR sustainability&language=es&apiKey=${API_KEY}`
+      const API_KEY = '321bcd82eb1c22d5413cd2fc506fe018' // 👈 Coloca tu nueva API key aquí
+      const URL = `https://gnews.io/api/v4/search?q=medio ambiente OR clima OR sostenibilidad&lang=es&max=10&apikey=${API_KEY}`
+      
       try {
         const response = await axios.get(URL)
-        this.noticias = response.data.articles.filter(n => n.urlToImage)
+        // GNews usa "articles" igual que NewsAPI
+        this.noticias = response.data.articles.filter(n => n.image)
       } catch (error) {
         console.error('Error al cargar noticias:', error)
+        this.noticias = [] // Asegurar que no quede undefined
       } finally {
         this.loading = false
       }
@@ -101,7 +104,6 @@ export default {
   }
 }
 </script>
-
 
 <style>
 .container {
