@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Huella from '../views/Huella.vue';
 import InicioView from '@/views/InicioView.vue';
 
+
+
 const routes = [
   { 
     path: '/',
