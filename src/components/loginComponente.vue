@@ -29,7 +29,7 @@
     </button>
     <p v-if="error" class="error">{{ error }}</p>
           <div class="google-btn">
-        <a href="https://prueba-backend-salvambiente.onrender.com/api/auth/google">
+        <a href="https://prueba-frontend-salvambiente.vercel.app/api/auth/google">
           <button type="button" class="google">Inicia con
               <svg width="18" height="18" viewBox="0 0 48 48" style="vertical-align: middle; margin-right: 8px;">
                 <g>
