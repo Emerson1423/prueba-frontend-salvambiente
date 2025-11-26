@@ -158,11 +158,14 @@ export default {
           contraseña: this.contraseña
         });
         
-        // Guardar token y datos de usuario
+        // ✅ Guardar con el nombre correcto
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('usuario', JSON.stringify(response.data.usuario)); // ✅ CAMBIADO
         
-        // Redirigir a huella
+        // ✅ Disparar evento para actualizar navbar
+        window.dispatchEvent(new Event('authStateChanged'));
+        
+        // ✅ Redirigir a home
         this.$router.push('/');
         
       } catch (err) {
